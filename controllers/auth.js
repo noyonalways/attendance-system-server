@@ -1,29 +1,5 @@
-/**
- * Request Input soruces
- * req body
- * req Param
- * req Query
- * req Header
- * req Cookies
- */
-
 const authService = require("../service/auth");
 
-/* Pseudo code
-    Start
-    name = input()
-    eamil = input()
-    password = input()
-    if name && email && password is invalid:
-        return 400 error
-    user = find user with email
-    if user found:
-        return 400 error
-    hash = hash password
-    user = save name, email, hash to user model
-    rertun 201
-    End 
-*/
 
 exports.register = async (req, res, next) => {
 	try {
@@ -40,22 +16,6 @@ exports.register = async (req, res, next) => {
 	}
 };
 
-/* Pseudo code
-    Start
-    name = input()
-    email = input()
-
-    user = find user with email
-    if user not found:
-        return 400 error
-
-    if password != to user hash:
-        return 400 error
-
-    token = generate token using user
-    return token
-    End 
-*/
 
 exports.login = async (req, res, next) => {
 	try {
