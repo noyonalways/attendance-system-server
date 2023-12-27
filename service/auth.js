@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const userService = require("./user");
+const userService = require("./users");
 const error = require("../utils/error");
 
 /**
@@ -9,7 +9,7 @@ const error = require("../utils/error");
  * @returns {Promise<User>} - A promise that resolves to the created user.
  * @throws {Error} - Throws an error if the user already exists.
  */
-exports.register = async ({ name, email, password }) => {
+exports.register = async ({ name, email, password, roles, accountStatus }) => {
 	let user = await userService.findUserByProperty("email", email);
 	if (user) throw error("User already exists", 400);
 	if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
@@ -17,7 +17,13 @@ exports.register = async ({ name, email, password }) => {
 
 	const salt = await bcrypt.genSalt(10);
 	const hash = await bcrypt.hash(password, salt);
-	return userService.createNewUser({ name, email, password: hash });
+	return userService.createNewUser({
+		name,
+		email,
+		password: hash,
+		roles,
+		accountStatus,
+	});
 };
 
 /**
