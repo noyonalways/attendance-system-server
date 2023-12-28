@@ -1,17 +1,17 @@
-### Request Input soruces
+# Attendance System App Server
 
- * req body
- * req Param
- * req Query
- * req Header
- * req Cookies
- 
+## Request Input soruces
 
-### Pseudo codes
+1. req body
+2. req Param
+3. req Query
+4. req Header
+5. req Cookies
+
+### Auth Pseudo codes:
 
 ```
 User Registration:
-Start
 name = input()
 eamil = input()
 password = input()
@@ -24,11 +24,10 @@ hash = hash password
 user = save name, email, hash to user model
 rertun 201
 End
-``` 
+```
 
 ```
 User Login:
-Start
 name = input()
 email = input()
 
@@ -41,5 +40,59 @@ if password != to user hash:
 
 token = generate token using user
 return token
-End
+```
+
+### User CRUD Pseudo codes:
+
+```
+Create user:
+name = input()
+email = input()
+password = input()
+roles = input()
+acctountStatus = input()
+user = register user via name, email, passowrd, roles, accountStatus
+if user found:
+	return user already exist message with status 400
+else:
+	create user and save to the db
+	return user with 201 status
+```
+
+```
+Get user by useId:
+userId = input()
+user = find user by userId
+if user not found:
+	return 404
+else:
+	return user with 200 status
+```
+
+```
+Update user by userId:
+userId = input()
+name = input()
+roles = input()
+accountStatus = input()
+user = find user by userId
+if user not found:
+	return 404
+else:
+	update user.name= name ?? user.name
+	update user.roles = roles ?? user.roles
+	update user.accountStatus = accountStatus ?? user.accountStatus
+	saver user to the db
+	return user with 200 status
+```
+
+```
+Delete user by userId:
+userId = input()
+user = find user by userId
+if user not found:
+	return 404
+else:
+	delete user from db
+	return 203 status
 ```
