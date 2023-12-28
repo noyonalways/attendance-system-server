@@ -46,6 +46,6 @@ exports.login = async ({ email, password }) => {
 		roles: user.roles,
 		accountStatus: user.accountStatus,
 	};
-	const token = jwt.sign(payload, "secret-key", { expiresIn: "1h" });
+	const token = jwt.sign(payload, "secret-key", { expiresIn: "3h" });
 	return token;
 };

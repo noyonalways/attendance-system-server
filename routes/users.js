@@ -14,8 +14,8 @@ const router = require("express").Router();
  * @method GET
  * @private
  */
-
 router.get("/", userController.getUsers);
+
 /**
  * Create a new user
  * @route /api/v1/users
@@ -38,7 +38,7 @@ router.get("/:userId", userController.getUserById);
  * @method PUT
  * @private
  */
-router.put("/:userId", () => {});
+router.put("/:userId", userController.putUserById);
 
 /**
  * Update user by id
@@ -46,7 +46,7 @@ router.put("/:userId", () => {});
  * @method PATCH
  * @private
  */
-router.patch("/:userId", () => {});
+router.patch("/:userId", userController.patchUserById);
 
 /**
  * Delete user by id
@@ -54,6 +54,6 @@ router.patch("/:userId", () => {});
  * @method DELETE
  * @private
  */
-router.delete("/:userId", () => {});
+router.delete("/:userId", userController.deleteUserById);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const error = require("../utils/error");
 
 /**
  * Find users
@@ -36,4 +37,18 @@ exports.createNewUser = ({ name, email, password, roles, accountStatus }) => {
 		accountStatus: accountStatus ? accountStatus : "PENDING",
 	});
 	return user.save();
+};
+
+/**
+ * Update a user by their user ID.
+ *
+ * @param {string} userId - The ID of the user to be updated.
+ * @param {{ name: string, email: string, accountStatus: string, roles: [string] }} data - The data to update the user with, including name, email, account status, and roles.
+ * @throws {Error} - Throws an error if the provided email is already in use, with a status code of 400.
+ * @returns {Promise<User>} - A Promise that resolves to the updated user object.
+ */
+exports.updateUser = async (userId, data) => {
+	const user = await this.findUserByProperty("email", data.email);
+	if (user) throw error("Email already in use", 400);
+	return User.findByIdAndUpdate(userId, { ...data }, { new: true });
 };
