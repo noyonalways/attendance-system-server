@@ -1,8 +1,18 @@
 # Attendance System App Server
 
+```
+/**
+* Student Perform Attendance 
+* step 1 - find admin attendance by attendanceId
+* step 2 - check if it is running or not
+* step 3 - check already perform attendance or not
+* step 4 - register entry
+*/
+```
+
 ## Request Input soruces
 
-1. req body
+1. req Body
 2. req Param
 3. req Query
 4. req Header
