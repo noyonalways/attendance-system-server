@@ -7,7 +7,7 @@ const studentAttendanceSchema = new Schema(
 			ref: "User",
 			required: true,
 		},
-		adimnAttendance: {
+		adminAttendance: {
 			type: Schema.Types.ObjectId,
 			ref: "AdminAttendance",
 			required: true,
